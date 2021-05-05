@@ -1,0 +1,23 @@
+{
+  "name": "haycode",
+  "version": "1.0.0",
+  "description": "Simple Application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/fastbeetech/haycode"
+  },
+  "keywords": [
+    "Abiola",
+    "Fasanya"
+  ],
+  "author": "Abiola Fasanya",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.7",
+    "pug": "^3.0.2"
+  }
+}
