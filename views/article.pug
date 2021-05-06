@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+
+    h1 #{title}
+    hr
+    
+    h5= article.title
+    p= article.body
+    code Article written by #{article.author}
+    p
+        br
+        a.btn.btn-default(href=`/article/edit/${article.id}`) Edit 
+        a.btn.btn-danger(href=`/article/delete/${article.id}`) Delete 

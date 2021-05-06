@@ -4,10 +4,16 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/src/bootstrap/dist/css/bootstrap.min.css")
         title Haycode
     body 
-        block content 
-        br
-        hr
+        include navbar
+        .container 
+            block content 
+            br
+            hr
         footer 
-           p Copyright $copy; 2021
+           p.text-center Fastbeetech Team Copyright &copy; 2021
+
+        script(src="/src/jquery/dist/jquery.js") 
+        script(src="/src/bootstrap/dist/js/bootstrap.js") 

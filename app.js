@@ -45,7 +45,6 @@ app.get('/', (req, res) => {
                 title: 'Welcome to Index Page',
                 articles: article
             })
-            article ? console.log(`${article} = = = > is running on index screen < = = = `) : console.log(err)
         })
     }
     catch(err) {
@@ -57,9 +56,26 @@ app.get('/', (req, res) => {
 // Add route
 app.get('/articles/add', (req, res) => {
     res.render('add', {
-        title: 'Articles'
+        title: 'Add Article'
     })
 })
+
+//Get single Article
+app.get('/article/:id', (req, res) => {
+    let id = req.params.id
+    Article.findById(id, (err, article) => {
+        if(err){
+            console.log(err)
+            return
+        }
+        res.render('article', {
+            title: 'Article Page',
+            article: article
+        })
+    })
+})
+
+
 
 // Add submit post route
 app.post('/articles/add', (req, res) => {
@@ -78,6 +94,59 @@ app.post('/articles/add', (req, res) => {
     }
 
     console.log('Submiited Add article')
+})
+
+// load edit form
+app.get('/article/edit/:id', (req, res) => {
+    Article.findById(req.params.id, (err, article) =>{
+        if(err){
+            console.log(err)
+            return
+        }
+        res.render('edit', {
+            title: 'Edit Article Page', 
+            article: article
+        })
+    })
+})
+
+// Edit form
+app.post('/article/edit/:id', (req, res) => {
+    let article = {}
+    article.title = req.body.title;
+    article.author = req.body.author;
+    article.body = req.body.body;
+
+    let id = {_id: req.params.id}
+    try{
+        Article.updateOne(id, article, (err) =>{
+            if(err) {
+                console.log(err)
+                return
+            }
+            res.redirect('/')
+
+            console.log(id)
+            console.log(`Article has been Updated with id: ${id._id}`)
+        })
+    }
+    catch(err) {
+        console.log(err)
+    }
+
+} )
+
+// Delete article
+app.get('/article/delete/:id', (req, res) => {
+    let id = {_id: req.params.id}
+    Article.findOneAndDelete(id, (err) => {
+        if(err){
+            console.log(err)
+            return
+        }
+        res.redirect('/')
+        console.log(`Article has been deleted`)
+    })
 })
 
 // Start Server
