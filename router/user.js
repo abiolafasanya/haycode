@@ -59,33 +59,40 @@ router.post('/register', async (req, res) =>{
 })
 
 // User login request
-router.post('/login', (req, res) => {
-    let usercheck = {email: req.body.email}
+router.post('/login', async (req, res) => {
+    try{
+        let usercheck = {email: req.body.email}
    
-    User.findOne(usercheck, (err, user) => {
-        if(err){
-            console.log(err)
-            return
-        }
-        console.log(user.password)
-        let username = user.name
-        console.log(username)
-        bcrypt.compare(req.body.password, user.password, (err, result) => {
-            if (err) {
-                 console.log(err)
-                 return
+        User.findOne(usercheck, (err, user) => {
+            if(err){
+                console.log(err)
+                return
             }
-            if(!result) {
-                let error = new Error('Invalid password')
-               console.log(error)
-               req.flash('danger', 'Invalid Username/Password')
-               res.render('./login')
-               return
-            }
-            req.flash('success', `Welcome ${username}`)
-            res.redirect('/')
+            console.log(user.password)
+            let username = user.name
+            console.log(username)
+            bcrypt.compare(req.body.password, user.password, (err, result) => {
+                if (err) {
+                    console.log(err)
+                    return
+                }
+                if(!result) {
+                    let error = new Error('Invalid password')
+                console.log(error)
+                req.flash('danger', 'Invalid Username/Password')
+                res.render('./login')
+                return
+                }
+                req.flash('success', `Welcome ${username}`)
+                res.redirect('/')
+            })
         })
-    })
+    }
+    catch(err){
+        console.log(err)
+        req.flash('danger', 'Server error try again later')
+        res.render('./render')
+    }
 })
 
 module.exports = router
