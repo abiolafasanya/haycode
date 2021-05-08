@@ -9,7 +9,7 @@ block content
         .card
           .card-header Register
           .card-body
-            form(method='POST' action='http://beelarvel.herokuapp.com/register')
+            form(method='POST' action='/user/register')
               input(type='hidden' name='_token' value='sT2WyiBoQLEGKUi6yrxHiGzRx0MeJJvYsKJjkzZu')
               .form-group.row
                 label.col-md-4.col-form-label.text-md-right(for='name') Name
@@ -26,7 +26,7 @@ block content
               .form-group.row
                 label.col-md-4.col-form-label.text-md-right(for='password-confirm') Confirm Password
                 .col-md-6
-                  input#password-confirm.form-control(type='password' name='password_confirmation' required='' autocomplete='new-password')
+                  input#password-confirm.form-control(type='password' name='passwordConfirmation' required='' autocomplete='new-password')
               .form-group.row.mb-0
                 .col-md-6.offset-md-4
                   button.btn.btn-primary(type='submit')
