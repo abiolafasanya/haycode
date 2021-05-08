@@ -49,8 +49,8 @@ router.post('/register', async (req, res) =>{
                     console.log(err)
                     return
                 }
-                req.flash('success', 'registration was successful')
-                res.redirect('/')
+                req.flash('success', 'registration was successful login with your credentials')
+                res.redirect('./login')
             })
     }
     catch(err){
@@ -59,19 +59,18 @@ router.post('/register', async (req, res) =>{
 })
 
 // User login request
-router.post('/login', async (req, res) => {
+router.post('/login',  (req, res) => {
     try{
         let usercheck = {email: req.body.email}
    
-        User.findOne(usercheck, (err, user) => {
+        User.findOne(usercheck, async (err, user) => {
             if(err){
                 console.log(err)
                 return
             }
-            console.log(user.password)
             let username = user.name
-            console.log(username)
-            bcrypt.compare(req.body.password, user.password, (err, result) => {
+            
+            await  bcrypt.compare(req.body.password, user.password, (err, result) => {
                 if (err) {
                     console.log(err)
                     return
