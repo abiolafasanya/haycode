@@ -91,7 +91,7 @@ router.post('/login', async (req, res) => {
     catch(err){
         console.log(err)
         req.flash('danger', 'Server error try again later')
-        res.render('./render')
+        res.render('./login')
     }
 })
 
