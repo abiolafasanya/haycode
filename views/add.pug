@@ -3,15 +3,15 @@ extends layout
 block content
     h1.text-center Add Articles
     .row.justify-content-center
-        form(method='POST', action='/articles/add')
+        form(method='POST', action='/article/add')
             #form-group  
                 label Title: 
                 input.form-control(type="text", name="title")
             #form-group  
+                label Body: 
+                textarea(name="body", cols="30", rows="10" class="form-control")
+            #form-group  
                 label Author: 
                 input.form-control(type="text", name="author")
-            #form-group  
-                label Body: 
-                textarea.form-control(name="body") 
-            .form-group
-            input.btn.btn-primary(type="submit", value="Add Article")
+            #form-group
+            input.btn.btn-primary.mt-3(type="submit", value="Add Article")

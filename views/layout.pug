@@ -9,6 +9,11 @@ html(lang="en")
     body 
         include navbar
         .container 
+            br
+            != messages('message', locals)
+            if error 
+                each errors, i in error 
+                    div(class="alert alert-danger") #{errors.msg}
             block content 
             br
             hr
