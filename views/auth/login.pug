@@ -1,0 +1,33 @@
+extends ../layout
+
+block content 
+
+ main.py-4
+  .container
+    .row.justify-content-center
+      .col-md-8
+        .card
+          .card-header Login
+          .card-body
+            form(method='POST' action='')
+              input(type='hidden' name='_token' value='pZBqgUnCmnnxCgN7mn31xfjz6oIHJ5k0CdNpHs5K')
+              .form-group.row
+                label.col-md-4.col-form-label.text-md-right(for='email') E-Mail Address
+                .col-md-6
+                  input#email.form-control(type='email' name='email' value='' required='' autocomplete='email' autofocus='')
+              .form-group.row
+                label.col-md-4.col-form-label.text-md-right(for='password') Password
+                .col-md-6
+                  input#password.form-control(type='password' name='password' required='' autocomplete='current-password')
+              .form-group.row
+                .col-md-6.offset-md-4
+                  .form-check
+                    input#remember.form-check-input(type='checkbox' name='remember')
+                    label.form-check-label(for='remember')
+                      | Remember Me
+              .form-group.row.mb-0
+                .col-md-8.offset-md-4
+                  button.btn.btn-primary(type='submit')
+                    | Login
+                  a.btn.btn-link(href='http://beelarvel.herokuapp.com/password/reset')
+                    | Forgot Your Password?

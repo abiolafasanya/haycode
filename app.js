@@ -65,6 +65,10 @@ app.get('/',  (req, res) => {
     } 
 })
 
+// User Route
+let userRoute = require('./router/user')
+app.use('/user', userRoute)
+
 // Article Route
 let articleRoute = require('./router/article')
 app.use('/article', articleRoute)
